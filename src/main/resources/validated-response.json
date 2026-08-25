@@ -1,0 +1,56 @@
+{
+  "versionId": 565,
+  "values": {
+    "valida1": "valor01",
+    "valida2": "valor02",
+    "GENEPI": {
+      "label": "GENEPI",
+      "url": "https://genepi-ipe.pfv.private.sfr.com/ipe/6a8da2ff1726626f45cd9972"
+    },
+    "valida3": "valor03"
+  },
+  "config": [
+    {
+      "regexp": null,
+      "visible": true,
+      "name": "valida1",
+      "readOnly": true,
+      "label": "labelalterada",
+      "type": "textbox",
+      "required": true
+    },
+    {
+      "regexp": null,
+      "visible": true,
+      "name": "valida2",
+      "readOnly": false,
+      "label": "",
+      "type": "textbox",
+      "required": false
+    },
+    {
+      "visible": true,
+      "name": "valida3",
+      "readOnly": true,
+      "label": "valida3",
+      "type": "textbox",
+      "required": false
+    },
+    {
+      "visible": false,
+      "name": "valida4",
+      "readOnly": true,
+      "label": "valida4",
+      "type": "textbox",
+      "required": false
+    },
+    {
+      "visible": true,
+      "name": "valida5",
+      "readOnly": false,
+      "label": "",
+      "type": "textbox",
+      "required": true
+    }
+  ]
+}
