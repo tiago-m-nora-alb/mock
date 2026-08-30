@@ -1,0 +1,10 @@
+.git
+.gradle
+.idea
+build
+.quarkus
+*.iml
+*.ipr
+*.iws
+.env
+.certs
