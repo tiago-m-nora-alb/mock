@@ -42,22 +42,45 @@ Run it locally:
 docker run --rm -p 34000:34000 YOUR_DOCKERHUB_USERNAME/sigo-mock:1.0.0
 ```
 
-### Provide mock endpoints at runtime
+### Configure mock endpoints at runtime
 
-Mount a directory and set `MOCK_RESPONSES_DIR` to that directory inside the
-container. Every `name.json` file becomes the `GET /name` endpoint, with the
-file content returned as `application/json`. Files are read on every request,
-so replacing a file changes the next response without restarting the
-container.
+Use one JSON configuration file to define the HTTP method, endpoint path,
+response status, and JSON response body. The supported methods are `GET`,
+`POST`, `PUT`, `PATCH`, and `DELETE`; paths can contain multiple segments.
 
-For example, a host directory containing `validated.json` and
-`health.json` serves `GET /validated` and `GET /health`:
+```json
+{
+  "endpoints": [
+    {
+      "method": "POST",
+      "path": "/tickets",
+      "status": 201,
+      "response": {
+        "id": 123,
+        "created": true
+      }
+    }
+  ]
+}
+```
+
+Mount the file and set `MOCK_CONFIG_FILE` to its path inside the container.
+The configuration is read on every request, so edits take effect without an
+image rebuild or container restart:
 
 ```powershell
 docker run --rm -p 34000:34000 `
-  -e MOCK_RESPONSES_DIR=/mock-responses `
-  -v "${PWD}/responses:/mock-responses:ro" `
+  -e MOCK_CONFIG_FILE=/mock-config/mock-endpoints.json `
+  -v "${PWD}/responses:/mock-config:ro" `
   tiagonora/mock:1.0.0
+```
+
+With the example file in `responses/mock-endpoints.json`, test it with:
+
+```powershell
+curl.exe -i -X POST http://localhost:34000/tickets
+curl.exe -i http://localhost:34000/errors/400
+curl.exe -i http://localhost:34000/errors/500
 ```
 
 

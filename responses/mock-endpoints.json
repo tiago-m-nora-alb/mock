@@ -1,0 +1,45 @@
+{
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/hello",
+      "status": 200,
+      "response": {
+        "message": "Hello"
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/tickets",
+      "status": 201,
+      "response": {
+        "id": 123,
+        "created": true
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/tickets/123",
+      "status": 204,
+      "response": null
+    },
+    {
+      "method": "GET",
+      "path": "/errors/400",
+      "status": 400,
+      "response": {
+        "error": "Bad Request",
+        "message": "The request is invalid"
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/errors/500",
+      "status": 500,
+      "response": {
+        "error": "Internal Server Error",
+        "message": "An unexpected error occurred"
+      }
+    }
+  ]
+}
